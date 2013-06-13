@@ -14,8 +14,8 @@
 	<!-- Administrator back-end section -->
 	<administration>
 		<!-- Administration menu -->
-		<menu view="receipts"
-			img="../media/com_mdfuel/images/contactus-16.png">MD Fuel</menu>
+		<menu view="cars"
+			img="../media/com_mdfuel/images/contactus-16.png">MDFuel</menu>
 		<!-- Back-end files -->
 		<files folder="backend">
 			<folder>views</folder> -->

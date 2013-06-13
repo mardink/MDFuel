@@ -17,7 +17,7 @@
 		<header name="ordering" type="ordering" sortable="true" tdwidth="1%" />
         <header name="mdfuel_receipt_id" type="rowselect" tdwidth="20" />
         <header name="Tank datum" type="field" sortable="true" buttons="no" buttonclass="btn" />
-        <header name="kenteken" type="field" sortable="false"  buttons="no" buttonclass="btn" />
+        <header name="kenteken" type="fieldsearchable" sortable="true"   buttonclass="btn" />
         <header name="winterbanden" type="field" sortable="true" buttons="no" buttonclass="btn" />
         <header name="Brandstof" type="field" sortable="false" buttons="no" buttonclass="btn" />
         <header name="KM stand" type="field" sortable="false" buttons="no" buttonclass="btn" />

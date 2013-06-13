@@ -4,7 +4,7 @@
 	<backend>
 		<!-- Dispatcher options -->
 		<dispatcher>
-			<option name="default_view">car</option>
+			<option name="default_view">cars</option>
 		</dispatcher>
 	</backend>
 	
