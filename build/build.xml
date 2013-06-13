@@ -1,1 +1,80 @@
-test
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="MDFuel" description="MDfuel component for Joomla!" default="update" > <!-- Change name and description -->
+
+    <!-- Default properties -->
+    <property name="dirs.project" value="../../../../MDFuel" /> <!-- Change to the location of github repositorie -->
+    <property name="dirs.language" value="../../language" />
+    <property name="dirs.languagefront" value="../../../language" />
+    <property name="dirs.front" value="../../../components" />
+    <property name="dirs.media" value="../../../media" />
+    <property name="project" value="mdfuel" /> <!-- Change the project name -->
+
+
+    <!--
+    ====================================================================================================
+    Tasks - General
+    ====================================================================================================
+    -->
+
+    <target name="update" description="Deletes and copies everything"
+            depends="delete,copy">
+    </target>
+    <target name="all" description="Deletes and copies everything"
+            depends="delete,copy,package">
+    </target>
+
+
+
+    <!-- Delete target folder content -->
+    <target name="delete" description="deletes files and folders in target folder">
+        <delete dir="${dirs.project}/backend" includeemptydirs="true" />
+        <delete dir="${dirs.project}/frontend" includeemptydirs="true" />
+        <delete dir="${dirs.project}/media" includeemptydirs="true" />
+        <delete dir="${dirs.project}/language" includeemptydirs="true" />
+    </target>
+
+    <!-- Copy the files to the github folder -->
+<target name="copy" description="Copies file from joomla to github folder">
+
+    <!-- Copy backend files -->
+    <copy todir="${dirs.project}/backend" >
+    <fileset dir=".">
+        <include name="**/*.*" />
+        <exclude name="**/build.xml" />
+    </fileset>
+    </copy>
+
+    <!-- Copy frontend files -->
+    <copy todir="${dirs.project}/frontend" >
+        <fileset dir="${dirs.front}/com_${project}">
+            <include name="**/*.*" />
+        </fileset>
+    </copy>
+
+    <!-- Copy media folder -->
+    <copy todir="${dirs.project}/media" >
+        <fileset dir="${dirs.media}/com_${project}">
+            <include name="**/*.*" />
+        </fileset>
+    </copy>
+
+    <!-- Copy build file and xml file -->
+    <copy file="com_${project}.xml" tofile="${dirs.project}/com_${project}.xml" overwrite="true"/>
+    <copy file="build.xml" tofile="${dirs.project}/build/build.xml" overwrite="true"/>
+    <!-- Copy language files backend-->
+    <copy file="${dirs.language}/en-GB/en-GB.com_${project}.ini" tofile="${dirs.project}/language/backend/en-GB/en-GB.com_${project}.ini" haltonerror="false" overwrite="true"/>
+    <copy file="${dirs.language}/en-GB/en-GB.com_${project}.sys.ini" tofile="${dirs.project}/language/backend/en-GB/en-GB.com_${project}.sys.ini" haltonerror="false" overwrite="true"/>
+    <copy file="${dirs.language}/nl-NL/nl_NL.com_${project}.ini" tofile="${dirs.project}/language/backend/nl_NL/nl_NL.com_${project}.ini" haltonerror="false" overwrite="true"/>
+    <copy file="${dirs.language}/nl-NL/nl_NL.com_${project}.sys.ini" tofile="${dirs.project}/language/backend/nl_NL/nl_NL.com_${project}.sys.ini" haltonerror="false" overwrite="true"/>
+
+    <!-- Copy language files frontend-->
+    <copy file="${dirs.languagefront}/en-GB/en-GB.com_${project}.ini" tofile="${dirs.project}/language/frontend/en-GB/en-GB.com_${project}.ini" haltonerror="false" overwrite="true"/>
+    <copy file="${dirs.languagefront}/nl-NL/nl_NL.com_${project}.ini" tofile="${dirs.project}/language/frontend/nl_NL/nl_NL.com_${project}.ini" haltonerror="false" overwrite="true"/>
+
+</target>
+<target name="package" description="zip the folder to create installable file">
+
+</target>
+
+
+</project>
