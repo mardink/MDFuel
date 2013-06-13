@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	@package	MDFuel
+	@copyright	Copyright (c)2013 Martijn Hiddink / MardinkWebdesign.com
+	@license	GNU General Public License version 2 or later
+	
+	Items view form file
+-->
+<form
+	type="browse"
+	show_header="1"
+	show_filters="1"
+	show_pagination="1"
+	norows_placeholder="COM_MDFUEL_COMMON_NORECORDS"
+>
+	<headerset>
+		<header name="ordering" type="ordering" sortable="true" tdwidth="1%" />
+		<header name="mdfuel_car_id" type="rowselect" tdwidth="20" />
+		<header name="kenteken" type="fieldsearchable" sortable="true" buttons="yes" buttonclass="btn"	/>
+        <header name="merk" type="field" sortable="true" buttons="no" buttonclass="btn" />
+        <header name="type" type="field" sortable="true" buttons="no" buttonclass="btn" />
+        <header name="Brandstof" type="field" sortable="true" buttons="no" buttonclass="btn" />
+        <header name="Huidige km stand" type="field" sortable="true" buttons="no" buttonclass="btn" />
+        <header name="winterbandencorrectie" type="field" sortable="true" buttons="no" buttonclass="btn" />
+        <header name="totaal verbuik (L)" type="field" sortable="true" buttons="no" buttonclass="btn" />
+        <header name="Gem. verbruik (L/100km)" type="field" sortable="true" buttons="no" buttonclass="btn" />
+        <header name="Totaal Bedrag getankt" type="field" sortable="true" buttons="no" buttonclass="btn" />
+		<header name="access" type="accesslevel" sortable="true" />
+		<header name="enabled" type="published" sortable="true" tdwidth="8%" />
+	</headerset>
+
+	<fieldset name="items">
+		<field name="ordering" type="ordering" labelclass="order"/>
+		<field name="mdfuel_car_id" type="selectrow"/>
+		<field name="kenteken" type="text" show_link="true"	url="index.php?option=com_mdfuel&amp;view=car&amp;id=[ITEM:ID]"	 />
+        <field name="merk" type="field" />
+        <field name="type" type="field" />
+        <field name="fuel" type="field" />
+        <field name="kmstand" type="field" />
+        <field name="winterbandencorrectie" type="field" />
+        <field name="totaalverbuik" type="text" />
+        <field name="gemverbruik" type="text" />
+        <field name="totaalbedrag" type="text" />
+		<field name="access" type="accesslevel" />
+		<field name="enabled" type="published"/>
+	</fieldset>
+</form>

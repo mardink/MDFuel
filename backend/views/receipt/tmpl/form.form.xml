@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+	@package	MDFuel
+	@copyright	Copyright (c)2013 Martijn Hiddink / MardinkWebdesign.com
+	@license	GNU General Public License version 2 or later
+	
+	Items view form file
+-->
+<form validate="true">
+	<fieldset name="basic_configuration"
+		label="COM_MDFUEL_RECEIPTS_GROUP_BASIC"
+	>
+        <field name="mdfuel_car_id" type="model"
+               label="COM_MDFUEL_CARS_FIELD_KENTEKEN"
+               translate="false"
+               model="MdfuelModelCars" apply_access="false"
+               key_field="mdfuel_car_id" value_field="kenteken"
+               required="true"
+                />
+        <field name="tankdatum" type="calendar"
+               label="COM_MDFUEL_RECEIPT_FIELD_TANKDATUM"
+               description="COM_MDFUEL_RECEIPT_FIELD_TANKDATUM_DESC"
+               class="input-large"
+               required="true"
+                />
+        <field name="winterbanden" type="list" label="COM_MDFUEL_RECEIPTS_FIELD_WINTERBANDEN"
+               labelclass="todo-label"
+               description="COM_MDFUEL_RECEIPTS_FIELD_WINTERBANDEN_DESC" class="inputbox"
+               filter="intval" size="1" default="0"
+                >
+            <option value="1">COM_MDFUEL_RECEIPTS_FIELD_WINTERBANDEN_YES</option>
+            <option value="0">COM_MDFUEL_RECEIPTS_FIELD_WINTERBANDEN_NO</option>
+        </field>
+        <field name="kmstand_tank" type="text"
+               label="COM_MDFUEL_RECEIPT_FIELD_KMSTAND"
+               description="COM_MDFUEL_RECEIPT_FIELD_KMSTAND_DESC"
+               class="input-large validate-numeric"
+               required="true"
+               errormsg="COM_MDFUEL_RECEIPT_FIELD_VALIDATION_ERROR"
+                />
+        <field name="liters" type="text"
+               label="COM_MDFUEL_RECEIPT_FIELD_LITERS"
+               description="COM_MDFUEL_RECEIPT_FIELD_LITERS_DESC"
+               class="input-large validate-numeric"
+               required="true"
+               errormsg="COM_MDFUEL_RECEIPT_FIELD_LITERS_VALIDATION_ERROR"
+                />
+        <field name="liter_prijs" type="text"
+               label="COM_MDFUEL_RECEIPT_FIELD_PRICE"
+               description="COM_MDFUEL_RECEIPT_FIELD_PRICE_DESC"
+               class="input-large validate-numeric"
+               required="false"
+               errormsg="COM_MDFUEL_RECEIPT_FIELD_VALIDATION_ERROR"
+                />
+        <field name="comment" type="text"
+               label="COM_MDFUEL_RECEIPT_FIELD_COMMENT"
+               description="COM_MDFUEL_RECEIPT_FIELD_COMMENT_DESC"
+               class="input-large"
+               required="false"
+                />
+
+		<field name="access" type="accesslevel"
+			label="COM_MDFUEL_RECEIPTS_FIELD_ACCESS"
+			description="COM_MDFUEL_RECEIPTS_FIELD_ACCESS_DESC"
+			required="true"
+		/>
+
+		<field name="enabled" type="list" label="JSTATUS"
+			labelclass="todo-label"
+			description="JFIELD_PUBLISHED_DESC" class="inputbox"
+			filter="intval" size="1" default="1"
+		>
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+		</field>
+	</fieldset>
+</form>
