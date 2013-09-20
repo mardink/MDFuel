@@ -18,13 +18,13 @@
 		<header name="mdfuel_car_id" type="rowselect" tdwidth="20" />
 		<header name="kenteken" type="fieldsearchable" sortable="true" buttons="yes" buttonclass="btn"	/>
         <header name="merk" type="field" sortable="true" buttons="no" buttonclass="btn" />
-        <header name="type" type="field" sortable="true" buttons="no" buttonclass="btn" />
-        <header name="Brandstof" type="field" sortable="true" buttons="no" buttonclass="btn" />
-        <header name="Huidige km stand" type="field" sortable="true" buttons="no" buttonclass="btn" />
-        <header name="winterbandencorrectie" type="field" sortable="true" buttons="no" buttonclass="btn" />
-        <header name="totaal verbuik (L)" type="field" sortable="true" buttons="no" buttonclass="btn" />
-        <header name="Gem. verbruik (L/100km)" type="field" sortable="true" buttons="no" buttonclass="btn" />
-        <header name="Totaal Bedrag getankt" type="field" sortable="true" buttons="no" buttonclass="btn" />
+        <header name="type" type="field" sortable="false" buttons="no" buttonclass="btn" />
+        <header name="fuel" type="field" sortable="true" buttons="no" buttonclass="btn" />
+        <header name="kmstand" type="field" sortable="true" buttons="no" buttonclass="btn" />
+        <header name="winterbandencorrectie" type="field" sortable="false" buttons="no" buttonclass="btn" />
+        <header name="totaalverbruik" type="field" sortable="true" buttons="no" buttonclass="btn" />
+        <header name="gemverbruik" type="field" sortable="true" buttons="no" buttonclass="btn" />
+        <header name="totaalbedrag" type="field" sortable="true" buttons="no" buttonclass="btn" />
 		<header name="access" type="accesslevel" sortable="true" />
 		<header name="enabled" type="published" sortable="true" tdwidth="8%" />
 	</headerset>
