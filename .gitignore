@@ -216,3 +216,6 @@ pip-log.txt
 
 #PHPStorm
 .idea
+package/
+build/
+*.zip

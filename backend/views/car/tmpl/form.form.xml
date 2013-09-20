@@ -47,9 +47,9 @@
                filter="intval" size="1"
                required="true"
                 >
-            <option value="Diesel">COM_MDFUEL_CARS_FIELD_FUEL_DIESEL</option>
-            <option value="Petrol">COM_MDFUEL_CARS_FIELD_FUEL_GAS</option>
-            <option value="LPG">COM_MDFUEL_CARS_FIELD_FUEL_LPG</option>
+            <option value="0">COM_MDFUEL_CARS_FIELD_FUEL_DIESEL</option>
+            <option value="1">COM_MDFUEL_CARS_FIELD_FUEL_GAS</option>
+            <option value="2">COM_MDFUEL_CARS_FIELD_FUEL_LPG</option>
         </field>
 
 		<field name="access" type="accesslevel"

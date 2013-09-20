@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <fieldset
+            name="Basic"
+            label="COM_MDTICKETS_OPTIONS_CONFIG_BASIC_LABEL"
+            description="COM_MDTICKETS_OPTIONS_CONFIG_BASIC_DESC"
+            >
+        <field name="number_calls" type="text" label="COM_MDTICKETS_OPTIONS_CONFIG_NRCALL_LABEL" description="COM_MDTICKETS_OPTIONS_CONFIG_NRCALL_DESC"
+               default="5" filter="integer" class="inputbox validate-numeric"	/>
+        <field name="location" type="text" label="COM_MDTICKETS_OPTIONS_CONFIG_LOCATION_LABEL" description="COM_MDTICKETS_OPTIONS_CONFIG_LOCATION_DESC"
+               default="/attachment" class="inputbox"	/>
+        <field name="filetype" type="text" label="COM_MDTICKETS_OPTIONS_CONFIG_FILETYPE_LABEL" description="COM_MDTICKETS_OPTIONS_CONFIG_FILETYPE_DESC"
+                   default="pdf,jpg,txt,xls,xlsx,doc,docx,bmp,png,zip" class="inputbox"	/>
+        <field name="number_months" type="text" label="COM_MDTICKETS_OPTIONS_CONFIG_NRMONTH_LABEL" description="COM_MDTICKETS_OPTIONS_CONFIG_NRMONTH_DESC"
+               default="6" filter="integer" class="inputbox validate-numeric"	/>
+        <field name="completeddays" type="text" label="COM_MDTICKETS_OPTIONS_CONFIG_COMPLETEDDAYS_LABEL" description="COM_MDTICKETS_OPTIONS_CONFIG_COMPLETEDDAYS_DESC"
+               default="8" filter="integer" class="inputbox validate-numeric"	/>
+        <field name="warning_days" type="text" label="COM_MDTICKETS_OPTIONS_CONFIG_WARNINGDAYS_LABEL" description="COM_MDTICKETS_OPTIONS_CONFIG_WARNINGDAYS_DESC"
+               default="8" filter="integer" class="inputbox validate-numeric"	/>
+        <field name="menu_item_id" type="menuitem" default="45" label="COM_MDTICKETS_OPTIONS_CONFIG_MENU_LABEL" description="COM_MDTICKETS_OPTIONS_CONFIG_MENU_DESC" />
+    </fieldset>
+    <fieldset
+		name="permissions"
+		label="JCONFIG_PERMISSIONS_LABEL"
+		description="JCONFIG_PERMISSIONS_DESC"
+		>
+
+		<field
+			name="rules"
+			type="rules"
+			label="JCONFIG_PERMISSIONS_LABEL"
+			class="inputbox"
+			filter="rules"
+			component="com_mdtickets"
+			section="component" />
+	</fieldset>	
+</config>

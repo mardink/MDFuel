@@ -19,7 +19,7 @@
     <target name="update" description="Deletes and copies everything"
             depends="delete,copy">
     </target>
-    <target name="all" description="Deletes and copies everything"
+    <target name="release" description="Deletes and copies everything"
             depends="delete,copy,package">
     </target>
 
@@ -73,7 +73,11 @@
 
 </target>
 <target name="package" description="zip the folder to create installable file">
-
+    <zip destfile="${dirs.project}/package/com-${project}.zip">
+        <fileset dir="${dirs.project}">
+            <include name="**/**" />
+        </fileset>
+    </zip>
 </target>
 
 
