@@ -13,7 +13,7 @@
         <field name="mdfuel_car_id" type="model"
                label="COM_MDFUEL_CARS_FIELD_KENTEKEN"
                translate="false"
-               model="MdfuelModelCars" apply_access="false"
+               model="MdfuelModelReceipt" apply_access="false"
                key_field="mdfuel_car_id" value_field="kenteken"
                required="true"
                 />

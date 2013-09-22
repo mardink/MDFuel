@@ -39,21 +39,42 @@ class MdfuelHelperSelect
 
         return self::genericlist($options, $id, $attribs, $selected, $id);
     }
-// get th licence plates from the database
+// get the licence plates from the database
     public static function kenteken($selected = null, $id = 'type', $attribs = array() )
     {
         $db = JFactory::getDBO();
-
-        $query = 'SELECT DISTINCT kenteken'
-            . ' FROM #__mdfuel_cars'
-            . ' ORDER BY kenteken ASC';
+        $query = $db->getQuery(true)
+            ->select('*')
+            ->from($db->quoteName('#__mdfuel_cars'))
+            ->group('kenteken')
+            ->order('kenteken ASC');
         $db->setQuery( $query );
         $result = $db->loadObjectList( );
         $options = array();
         $options[] = JHTML::_('select.option','','- '.JText::_('COM_MDFUEL_RECIEPTS_FIELD_KENTEKEN').' -');
         //now fill the array with your database result
         foreach($result as $key=>$value) :
-            $options[] = JHTML::_('select.option',$value->kenteken,$value->kenteken);
+            $options[] = JHTML::_('select.option',$value->mdfuel_car_id,$value->kenteken);
+        endforeach;
+
+        return self::genericlist($options, $id, $attribs, $selected, $id);
+    }
+    // Get the active cars
+    public static function ActiveCars($selected = null, $id = 'type', $attribs = array() )
+    {
+        $db = JFactory::getDBO();
+        $query = $db->getQuery(true)
+            ->select('*')
+            ->from($db->quoteName('#__mdfuel_cars'))
+            ->where($db->qn('enabled').' != '.$db->q('0'))
+            ->order('kenteken ASC')
+            ->group('kenteken');
+        $db->setQuery( $query );
+        $result = $db->loadObjectList( );
+        $options = array();
+        //now fill the array with your database result
+        foreach($result as $key=>$value) :
+            $options[] = JHTML::_('select.option',$value->mdfuel_car_id,$value->kenteken);
         endforeach;
 
         return self::genericlist($options, $id, $attribs, $selected, $id);

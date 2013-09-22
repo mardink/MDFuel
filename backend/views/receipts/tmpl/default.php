@@ -33,7 +33,6 @@ $hasAjaxOrderingSupport = $this->hasAjaxOrderingSupport();
             <?php echo JHtmlSidebar::render(); ?>
             <hr>
             <div class="filter-select hidden-phone">
-                de filters moeten nog werkend gemaakt worden
                 <h4 class="page-header">Filter:</h4>
             <?php echo MdfuelHelperSelect::kenteken($this->getModel()->getState('kenteken'), 'kenteken', array('onchange'=>'this.form.submit();','class' => 'input')) ?><br/>
             <?php echo MdfuelHelperSelect::fuel($this->getModel()->getState('fuel'), 'fuel', array('onchange'=>'this.form.submit();','class' => 'input')) ?>
@@ -124,7 +123,7 @@ $m = 1 - $m;
     <?php endif; ?>
     <td><?php echo JHTML::_('grid.id', $i, $item->mdfuel_receipt_id); ?></td>
     <td><span class="tankdatum">
-        <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $item->mdfuel_receipt_id;?>"><?php echo $item->tankdatum; ?></a>
+        <a href="index.php?option=com_mdfuel&view=receipt&task=edit&id=<?php echo $item->mdfuel_receipt_id;?>"><?php echo $item->tankdatum; ?></a>
      </span></td>
     <td><span class="kenteken">
     <?php echo MdfuelHelperReceipts::getKenteken($item->mdfuel_car_id);?>
