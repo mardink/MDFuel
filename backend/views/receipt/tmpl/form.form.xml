@@ -20,6 +20,7 @@
         <field name="tankdatum" type="calendar"
                label="COM_MDFUEL_RECEIPT_FIELD_TANKDATUM"
                description="COM_MDFUEL_RECEIPT_FIELD_TANKDATUM_DESC"
+               format="%Y-%m-%d"
                class="input-large"
                required="true"
                 />

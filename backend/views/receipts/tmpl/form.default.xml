@@ -19,12 +19,11 @@
         <header name="Tank datum" type="field" sortable="true" buttons="no" buttonclass="btn" />
         <header name="kenteken" type="fieldsearchable" sortable="true"   buttonclass="btn" />
         <header name="winterbanden" type="field" sortable="true" buttons="no" buttonclass="btn" />
-        <header name="Brandstof" type="field" sortable="false" buttons="no" buttonclass="btn" />
-        <header name="KM stand" type="field" sortable="false" buttons="no" buttonclass="btn" />
+        <header name="Brandstof" type="field" sortable="true" buttons="no" buttonclass="btn" />
+        <header name="KM stand" type="field" sortable="true" buttons="no" buttonclass="btn" />
         <header name="Aantal Liters" type="field" sortable="false" buttons="no" buttonclass="btn" />
         <header name="Liter prijs" type="field" sortable="false" buttons="no" buttonclass="btn" />
         <header name="Opmerking" type="field" sortable="false" buttons="no" buttonclass="btn" />
-		<header name="access" type="accesslevel" sortable="true" />
 		<header name="enabled" type="published" sortable="true" tdwidth="8%" />
 	</headerset>
 
@@ -42,7 +41,6 @@
         <field name="liters" type="field" />
         <field name="liter_prijs" type="text" />
         <field name="comment" type="text" />
-		<field name="access" type="accesslevel" />
 		<field name="enabled" type="published"/>
 	</fieldset>
 </form>
