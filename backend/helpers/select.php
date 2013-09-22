@@ -50,11 +50,39 @@ class MdfuelHelperSelect
         $db->setQuery( $query );
         $result = $db->loadObjectList( );
         $options = array();
-        $options[] = JHTML::_('select.option','','- '.JText::_('COM_MDFUEL_CARS_FIELD_ORDERING').' -');
+        $options[] = JHTML::_('select.option','','- '.JText::_('COM_MDFUEL_RECIEPTS_FIELD_KENTEKEN').' -');
         //now fill the array with your database result
         foreach($result as $key=>$value) :
             $options[] = JHTML::_('select.option',$value->kenteken,$value->kenteken);
         endforeach;
+
+        return self::genericlist($options, $id, $attribs, $selected, $id);
+    }
+    public static function renderaccess($access_level_id)
+    {
+        static $levelMap = null;
+
+        if(is_null($levelMap)) {
+            $db = JFactory::getDBO();
+            $query = 'SELECT `id`, `title` FROM `#__viewlevels`';
+            $db->setQuery($query);
+            $levelMap = $db->loadAssocList('id','title');
+        }
+
+        if(array_key_exists($access_level_id, $levelMap)) {
+            return $levelMap[$access_level_id];
+        } else {
+            return 'UNKNOWN '.$access_level_id;
+        }
+    }
+    // Set the status fields
+    public static function fuel($selected = null, $id = 'type', $attribs = array() )
+    {
+        $options = array();
+        $options[] = JHTML::_('select.option','','- '.JText::_('COM_MDFUEL_CARS_FIELD_FUEL').' -');
+        $options[] = JHTML::_('select.option','0',JText::_('COM_MDFUEL_CARS_FIELD_FUEL_DIESEL'));
+        $options[] = JHTML::_('select.option','1',JText::_('COM_MDFUEL_CARS_FIELD_FUEL_GAS'));
+        $options[] = JHTML::_('select.option','2',JText::_('COM_MDFUEL_CARS_FIELD_FUEL_LPG'));
 
         return self::genericlist($options, $id, $attribs, $selected, $id);
     }

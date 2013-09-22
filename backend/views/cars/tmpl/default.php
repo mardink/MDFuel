@@ -33,7 +33,8 @@ $hasAjaxOrderingSupport = $this->hasAjaxOrderingSupport();
             <hr>
             <div class="filter-select hidden-phone">
                 <h4 class="page-header">Filter:</h4>
-            <?php echo MdfuelHelperSelect::kenteken($this->getModel()->getState('kenteken'), 'kenteken', array('onchange'=>'this.form.submit();','class' => 'input')) ?>
+            <?php echo MdfuelHelperSelect::kenteken($this->getModel()->getState('kenteken'), 'kenteken', array('onchange'=>'this.form.submit();','class' => 'input')) ?><br/>
+            <?php echo MdfuelHelperSelect::fuel($this->getModel()->getState('fuel'), 'fuel', array('onchange'=>'this.form.submit();','class' => 'input')) ?>
             </div>
         </div>
         <div id="j-main-container" class="span10">
@@ -41,18 +42,22 @@ $hasAjaxOrderingSupport = $this->hasAjaxOrderingSupport();
     <div class="row span12">
     <!-- Search in ticket number -->
         <span class="input-append">
-    <input type="text" name="mdtickets_item_id" id="mdtickets_item_id"
-           value="<?php echo $this->escape($this->getModel()->getState('mdfuel_car_id',''));?>"
-           class="text_area input-small" onchange="document.adminForm.submit();"
-           placeholder="<?php echo JText::_('COM_MDTICKETS_SEARCH_TICKET') ?>"/>
-    <button class="btn" onclick="document.adminForm.mdtickets_item_id.value='';this.form.submit();">
+    <input type="text" name="search_kenteken" id="search_kenteken"
+           value="<?php echo $this->escape($this->getModel()->getState('search_kenteken',''));?>"
+           class="text_area input" onchange="document.adminForm.submit();"
+           placeholder="<?php echo JText::_('COM_MDFUEL_CARS_FIELD_KENTEKEN') ?>"/>
+    <button class="btn" onclick="document.adminForm.search_kenteken.value='';this.form.submit();">
         <i class="icon-cancel"></i>
     </button>
-         <button class="btn" onclick="document.adminForm.itoncall.value='';this.form.submit();">
+    <input type="text" name="search_brand" id="search_brand"
+           value="<?php echo $this->escape($this->getModel()->getState('search_brand',''));?>"
+           class="text_area" onchange="document.adminForm.submit();"
+           placeholder="<?php echo JText::_('COM_MDFUEL_CARS_FIELD_MERK') ?>"/>
+         <button class="btn" onclick="document.adminForm.search_brand.value='';this.form.submit();">
             <i class="icon-cancel"></i>
         </button>
         <button class="btn" onclick="this.form.submit();">
-            <i class="icon-search"></i><?php echo JText::_('COM_MDTICKETS_SEARCH_FILTER') ?>
+            <i class="icon-search"></i><?php echo JText::_('COM_MDFUEL_SEARCH_FILTER') ?>
         </button>
             </span>
     </div>
@@ -70,45 +75,44 @@ $hasAjaxOrderingSupport = $this->hasAjaxOrderingSupport();
     <th>
         <?php echo JHTML::_('grid.sort', 'COM_MDFUEL_CARS_FIELD_KENTEKEN', 'kenteken', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
-    <th class="span1">
+    <th class="span2">
         <?php echo JHTML::_('grid.sort', 'COM_MDFUEL_CARS_FIELD_MERK', 'merk', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
-    <th class="span1">
+    <th class="span2">
         <?php echo JHTML::_('grid.sort', 'COM_MDFUEL_CARS_FIELD_TYPE', 'type', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
     <th class="span1">
         <?php echo JHTML::_('grid.sort', 'COM_MDFUEL_CARS_FIELD_FUEL', 'fuel', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
-    <th class="span1">
+    <th class="span2">
         <?php echo JHTML::_('grid.sort', 'COM_MDFUEL_CARS_FIELD_KMSTAND', 'kmstand', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
     <th class="span1">
         <?php echo JHTML::_('grid.sort', 'COM_MDFUEL_CARS_FIELD_WINTERBANDENCORRECTIE', 'winterbandencorrectie', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
-    <th class="span1">
+    <th class="span2">
         <?php echo JHTML::_('grid.sort', 'COM_MDFUEL_CARS_FIELD_TOTAALVERBRUIK', 'totaalverbruik', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
-    <th class="span1">
+    <th class="span2">
         <?php echo JHTML::_('grid.sort', 'COM_MDFUEL_CARS_FIELD_GEMVERBRUIK', 'gemverbruik', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
-    <th class="span1">
+    <th class="span2">
         <?php echo JHTML::_('grid.sort', 'COM_MDFUEL_CARS_FIELD_TOTAALBEDRAG', 'totaalbedrag', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
-    <th class="span1">
+    <th width="100">
         <?php echo JHTML::_('grid.sort', 'COM_MDFUEL_CARS_FIELD_ACCESS', 'access', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
-    <th class="span1">
+    <th width="80">
         <?php echo JHTML::_('grid.sort', 'COM_MDFUEL_CARS_FIELD_ENABLED', 'enabled', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
     </tr>
     </thead>
     <tfoot>
     <tr>
-        <td colspan="7">
+        <td colspan="13">
             <?php if($this->pagination->total > 0) echo $this->pagination->getListFooter() ?>
         </td>
-        <td style="padding-top: 29px;" colspan="4"><span><?php echo JText::_('COM_MDFUEL_PAGINATION') ?></span>
-        <?php echo MdfuelHelperSelect::pagination($this->getModel()->getState('limit'), 'limit', array('onchange'=>'this.form.submit();','class' => 'input-small')) ?></td>
+
     </tr>
     </tfoot>
 <tbody>
@@ -147,6 +151,26 @@ $m = 1 - $m;
     <td><span class="kenteken">
         <a href="index.php?option=com_mdtickets&view=item&task=edit&id=<?php echo $item->mdfuel_car_id;?>"><?php echo $item->kenteken; ?></a>
      </span></td>
+    <td><span class="brand"><?php echo $item->merk;?></span></td>
+    <td><span class="type"><?php echo $item->type;?></span></td>
+    <td><span class="fuel">
+            <?php if ($item->fuel == "0") {
+                echo JText::_('COM_MDFUEL_CARS_FIELD_FUEL_DIESEL');
+            } elseif ($item->fuel == "1") {
+                echo JText::_('COM_MDFUEL_CARS_FIELD_FUEL_GAS');
+            } elseif ($item->fuel == "2") {
+                echo JText::_('COM_MDFUEL_CARS_FIELD_FUEL_LPG');
+            } ?>
+    </span></td>
+    <td><span class="mileage"><?php echo $item->kmstand;?></span></td>
+    <td><span class="tyres"><?php echo $item->winterbandencorrectie;?></span></td>
+    <td><span class="verbruik"><?php echo $item->totaalverbuik;?></span></td>
+    <td><span class="gemverbruik"><?php echo $item->gemverbruik;?></span></td>
+    <td><span class="bedrag"><?php echo $item->totaalbedrag;?></span></td>
+    <td><span class="ars-access"><?php echo MdfuelHelperSelect::renderaccess($item->access); ?></span></td>
+    <td align="center">
+        <?php echo JHtml::_('jgrid.published', $item->enabled, $i, '', $this->perms->editstate); ?>
+    </td>
     </tr>
 
         <?php

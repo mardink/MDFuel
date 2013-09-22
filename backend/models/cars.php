@@ -21,6 +21,10 @@ class MdfuelModelCars extends FOFModel
         if($fltKenteken) {
             $query->where($db->qn('kenteken').' = '.$db->q($fltKenteken));
         }
+        $fltFuel		= $this->getState('fuel', null, 'string');
+        if($fltFuel) {
+            $query->where($db->qn('fuel').' = '.$db->q($fltFuel));
+        }
 
         $fltMdticket	= $this->getState('mdfuel_car_id', null, 'string');
         if($fltMdticket) {
@@ -32,6 +36,16 @@ class MdfuelModelCars extends FOFModel
         $fltAccess		= $this->getState('access', null, 'cmd');
         if($fltAccess) {
             $query->where($db->qn('access').' = '.$db->q($fltAccess));
+        }
+        $fltSearch_kenteken	= $this->getState('search_kenteken', null, 'string');
+        if($fltSearch_kenteken) {
+            $fltSearch_kenteken = "%$fltSearch_kenteken%";
+            $query->where($db->qn('kenteken').' LIKE '.$db->q($fltSearch_kenteken));
+        }
+        $fltSearch_brand	= $this->getState('search_brand', null, 'string');
+        if($fltSearch_brand) {
+            $fltSearch_brand = "%$fltSearch_brand%";
+            $query->where($db->qn('merk').' LIKE '.$db->q($fltSearch_brand));
         }
 
         $fltPublished	= $this->getState('published', null, 'cmd');
@@ -58,10 +72,9 @@ class MdfuelModelCars extends FOFModel
             $search = '%'.$search.'%';
             $query->where(
                 '('.
-                '('.$db->qn('short').' LIKE '.$db->quote($search).') OR'.
-                '('.$db->qn('detail').' LIKE '.$db->quote($search).') OR'.
-                '('.$db->qn('itoncall').' LIKE '.$db->quote($search).') OR'.
-                '('.$db->qn('mdtickets_item_id').' LIKE '.$db->quote($search).')'.
+                '('.$db->qn('kenteken').' LIKE '.$db->quote($search).') OR'.
+                '('.$db->qn('merk').' LIKE '.$db->quote($search).') OR'.
+                '('.$db->qn('type').' LIKE '.$db->quote($search).')'.
                 ')'
             );
         }

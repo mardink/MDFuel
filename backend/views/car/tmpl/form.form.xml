@@ -32,13 +32,13 @@
         <field name="kmstand_start" type="text"
                label="COM_MDFUEL_CARS_FIELD_KMSTAND"
                description="COM_MDFUEL_CARS_FIELD_KMSTAND_DESC"
-               class="input-large"
+               class="input-large validate-numeric"
                required="true"
                 />
         <field name="winterbandencorrectie" type="text"
                label="COM_MDFUEL_CARS_FIELD_WINTERBANDENCORRECTIE"
                description="COM_MDFUEL_CARS_FIELD_WINTERBANDENCORRECTIE_DESC"
-               class="input-large"
+               class="input-large validate-numeric"
                required="false"
                 />
         <field name="fuel" type="list" label="COM_MDFUEL_CARS_FIELD_FUEL"
