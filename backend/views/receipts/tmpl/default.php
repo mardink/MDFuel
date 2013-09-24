@@ -74,6 +74,12 @@ $hasAjaxOrderingSupport = $this->hasAjaxOrderingSupport();
         <?php echo JHTML::_('grid.sort', 'COM_MDFUEL_RECEIPT_FIELD_PRICE', 'liter_prijs', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
     <th class="span2">
+        <?php echo JHTML::_('grid.sort', 'COM_MDFUEL_RECEIPT_FIELD_TOTALPRICE', 'tankbedrag', $this->lists->order_Dir, $this->lists->order) ?>
+    </th>
+    <th class="span2">
+        <?php echo JHTML::_('grid.sort', 'COM_MDFUEL_RECEIPT_FIELD_MILEAGE', 'gereden_km', $this->lists->order_Dir, $this->lists->order) ?>
+    </th>
+    <th class="span2">
         <?php echo JHTML::_('grid.sort', 'COM_MDFUEL_RECEIPT_FIELD_COMMENT', 'comment', $this->lists->order_Dir, $this->lists->order) ?>
     </th>
     <th width="80">
@@ -144,10 +150,12 @@ $m = 1 - $m;
                 echo JText::_('COM_MDFUEL_CARS_FIELD_FUEL_LPG');
             } ?>
     </span></td>
-    <td><span class="mileage"><?php echo $item->kmstand_tank;?></span></td>
-    <td><span class="mileage"><?php echo $item->liters;?></span></td>
-    <td><?php echo JText::_('COM_MDFUEL_RECEIPTS_CURRENCY');?><span class="mileage"><?php echo $item->liter_prijs;?></span></td>
-    <td><span class="mileage">
+    <td><span class="kmstand"><?php echo $item->kmstand_tank;?></span></td>
+    <td><span class="liters"><?php echo $item->liters;?></span></td>
+    <td><?php echo JText::_('COM_MDFUEL_RECEIPTS_CURRENCY');?><span class="liter_prijs"><?php echo $item->liter_prijs;?></span></td>
+    <td><?php echo JText::_('COM_MDFUEL_RECEIPTS_CURRENCY');?><span class="tankbedrag"><?php echo $item->tankbedrag;?></span></td>
+    <td><span class="km"><?php echo MdfuelHelperReceipts::getReceiptMileage($item->mdfuel_car_id, $item->tankdatum, $item->kmstand_tank);?></span></td>
+    <td><span class="comment">
             <?php if ($item->comment != "") {
                 echo $item->comment;
             } else {

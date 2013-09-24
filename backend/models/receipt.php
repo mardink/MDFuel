@@ -21,6 +21,7 @@ class MdfuelModelReceipt extends FOFModel
         return $query;
     }
 // get the current mileages plates from the database
+   /* overbodig
     public static function getCurrentMileage($carid)
     {
         // Get a db connection.
@@ -39,4 +40,5 @@ class MdfuelModelReceipt extends FOFModel
         $result = $db->loadResult();
         return $result;
     }
+    */
 }

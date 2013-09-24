@@ -15,7 +15,21 @@ class MdfuelControllerReceipt extends FOFController {
     *
     */
 
-
+    public function onBeforeApplySave(&$data) {
+        // require helper file
+        JLoader::register('MdfuelHelperReceipts', JPATH_COMPONENT.'/helpers/receipts.php');
+    $model = $this->getThisModel();
+        $item = $model->getItem();
+        $carid = $item->get('mdfuel_car_id');
+        $fueltype = MdfuelHelperReceipts::getFuelType($carid);
+        $jinput = JFactory::getApplication()->input;
+        $liters = $jinput->get('liters');
+        $liter_prijs = $jinput->get('liter_prijs');
+        $tankbedrag = $liters * $liter_prijs;
+        $data['tankbedrag'] = $tankbedrag;
+        $data['fuel'] = $fueltype;
+    return $data;
+}
 
     public function onAfterApplySave() {
         // require helper file
@@ -27,16 +41,11 @@ class MdfuelControllerReceipt extends FOFController {
        $current_mileage = MdfuelHelperReceipts::getCurrentMileage($carid);
         // prepare the data and send it to cars database
         $db = JFactory::getDbo();
-        $query = $db->getQuery(true);
-        $query  ->update($db->quoteName('#__mdfuel_cars'))
-                ->set('kmstand = 200')
-                ->where(
-                '('.
-                '('.$db->qn('mdfuel_car_id').' = '.$db->quote($carid).')'.
-                ')'
-            );
-        $db->setQuery($query);
-       // $result = $db->query();
+        $row = new JObject();
+        $row->mdfuel_car_id = $carid;
+        $row->kmstand = $current_mileage;
+       $result = $db->updateObject('#__mdfuel_cars', $row, 'mdfuel_car_id', false);
+        return $result;
    }
 
 }
