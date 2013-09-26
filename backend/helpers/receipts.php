@@ -41,7 +41,8 @@ class MdfuelHelperReceipts
             ->from($db->quoteName('#__mdfuel_receipts'))
             ->where(
                 '('.
-                '('.$db->qn('mdfuel_car_id').' = '.$db->quote($carid).')'.
+                '('.$db->qn('mdfuel_car_id').' = '.$db->quote($carid).') AND'.
+                '('.$db->qn('enabled').' = '.$db->quote('1').')'.
                 ')'
             );
         $db->setQuery($query); //set the limit
@@ -78,6 +79,7 @@ class MdfuelHelperReceipts
             ->where(
                 '('.
                 '('.$db->qn('mdfuel_car_id').' = '.$db->quote($carid).') AND'.
+                '('.$db->qn('enabled').' = '.$db->quote('1').') AND'.
                 '('.$db->qn('tankdatum').' < '.$db->quote($tankdate).')'.
                 ')'
             )
@@ -125,6 +127,48 @@ class MdfuelHelperReceipts
         $db->setQuery($query);
         $result = $db->loadResult();
         return $result;
+    }
+    // get the total amount of liters fuel plates from the database
+    public static function getTotalAmountFuel($carid)
+    {
+        // Get a db connection.
+        $db = JFactory::getDbo();
+        // Create a new query object.
+        $query = $db->getQuery(true);
+        $query
+            ->select('SUM(liters)')
+            ->from($db->quoteName('#__mdfuel_receipts'))
+            ->where(
+                '('.
+                '('.$db->qn('mdfuel_car_id').' = '.$db->quote($carid).') AND'.
+                '('.$db->qn('enabled').' = '.$db->quote('1').')'.
+                ')'
+            );
+        $db->setQuery($query); //set the limit
+        $result = $db->loadResult();
+            return $result;
+
+    }
+    // get the total amount  fuel from the database
+    public static function getTotalAmount($carid)
+    {
+        // Get a db connection.
+        $db = JFactory::getDbo();
+        // Create a new query object.
+        $query = $db->getQuery(true);
+        $query
+            ->select('SUM(tankbedrag)')
+            ->from($db->quoteName('#__mdfuel_receipts'))
+            ->where(
+                '('.
+                '('.$db->qn('mdfuel_car_id').' = '.$db->quote($carid).') AND'.
+                '('.$db->qn('enabled').' = '.$db->quote('1').')'.
+                ')'
+            );
+        $db->setQuery($query); //set the limit
+        $result = $db->loadResult();
+        return $result;
+
     }
 
 

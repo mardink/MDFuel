@@ -50,7 +50,7 @@
                label="COM_MDFUEL_RECEIPT_FIELD_PRICE"
                description="COM_MDFUEL_RECEIPT_FIELD_PRICE_DESC"
                class="input-large validate-numeric"
-               required="false"
+               required="true"
                errormsg="COM_MDFUEL_RECEIPT_FIELD_VALIDATION_ERROR"
                 />
         <field name="comment" type="text"
@@ -65,14 +65,14 @@
 			description="COM_MDFUEL_RECEIPTS_FIELD_ACCESS_DESC"
 			required="true"
 		/>
+        <field name="enabled" type="list" label="JSTATUS"
+               labelclass="todo-label"
+               description="JFIELD_PUBLISHED_DESC" class="inputbox"
+               filter="intval" size="1" default="1"
+                >
+            <option value="1">JPUBLISHED</option>
+            <option value="0">JUNPUBLISHED</option>
+        </field>
 
-		<field name="enabled" type="list" label="JSTATUS"
-			labelclass="todo-label"
-			description="JFIELD_PUBLISHED_DESC" class="inputbox"
-			filter="intval" size="1" default="1"
-		>
-			<option value="1">JPUBLISHED</option>
-			<option value="0">JUNPUBLISHED</option>
-		</field>
 	</fieldset>
 </form>
